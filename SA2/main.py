@@ -52,48 +52,43 @@ print("Number of testing ages = ", len(testing_images))
 print(":::::::::::::::::::::::::::::::::::::::::::::::::")
 
 # Create a Sequential model and name it age_model
-
+age_model = Sequential()
 
 # Add Conv2D layer of 128, kernal size of 3, activation function as relu and input shape as (200,200,3)
-
+age_model.add(Conv2D(128, kernel_size=3, activation='relu', input_shape=(200,200,3)))
 # Add MaxPool2D with pool_size of 3 and strides of 2
+age_model.add(MaxPool2D(pool_size=3, strides=2))
 
 
-
-# Add Conv2D layer of 128, kernal size of 3, activation function as relu 
-
-# Add MaxPool2D with pool_size of 3 and strides of 2
-
+age_model.add(Conv2D(128, kernel_size=3, activation='relu'))
+age_model.add(MaxPool2D(pool_size=3, strides=2))
               
-# Add Conv2D layer of 256, kernal size of 3, activation function as relu
+age_model.add(Conv2D(256, kernel_size=3, activation='relu'))
+age_model.add(MaxPool2D(pool_size=3, strides=2))
 
-# Add MaxPool2D with pool_size of 3 and strides of 2
+age_model.add(Conv2D(512, kernel_size=3, activation='relu'))
+age_model.add(MaxPool2D(pool_size=3, strides=2))
 
-
-# Add Conv2D layer of 512, kernal size of 3, activation function as relu 
-
-# Add MaxPool2D with pool_size of 3 and strides of 2
-
-
-# Add Flatten() to the model
+age_model.add(Flatten())
 
 # Add Dropout of 0.2
+age_model.add(Dropout(0.2))
 
-# Add Dense with 512, activation as relu
+age_model.add(Dense(512, activation='relu'))
 
 # Add Dense with 1, activation as linear and name as 'age'
-
+age_model.add(Dense(1, activation='linear', name='age'))
               
-# Compile the model with optimizer 'adam and loss 'name'  
-
+# Compile the model with optimizer 'adam and loss 'name'              
+age_model.compile(optimizer='adam', loss='mae')
 
 # Print model summary
+print(age_model.summary()) 
 
 # Fit the model and save the returned information in history variable
+history = age_model.fit(training_images, training_ages, validation_data=(testing_images, testing_ages), epochs=10)
 
-# Save the model to file named age_model_50epochs.h5
-
-
-
+# Save the model to file named age_model_50epochs.h
+age_model.save('age_model_50epochs.h5')
 
 
