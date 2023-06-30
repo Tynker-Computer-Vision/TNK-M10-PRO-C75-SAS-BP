@@ -70,13 +70,8 @@ age_model.add(Conv2D(512, kernel_size=3, activation='relu'))
 age_model.add(MaxPool2D(pool_size=3, strides=2))
 
 age_model.add(Flatten())
-
-# Add Dropout of 0.2
 age_model.add(Dropout(0.2))
-
 age_model.add(Dense(512, activation='relu'))
-
-# Add Dense with 1, activation as linear and name as 'age'
 age_model.add(Dense(1, activation='linear', name='age'))
               
 # Compile the model with optimizer 'adam and loss 'name'              
