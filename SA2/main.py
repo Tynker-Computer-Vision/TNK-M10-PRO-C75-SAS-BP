@@ -51,8 +51,7 @@ print("Number of training ages = ", len(training_ages))
 print("Number of testing ages = ", len(testing_images))
 print(":::::::::::::::::::::::::::::::::::::::::::::::::")
 
-# Create a Sequential model and name it age_model
-
+age_model = Sequential()
 
 # Add Conv2D layer of 128, kernal size of 3, activation function as relu and input shape as (200,200,3)
 
